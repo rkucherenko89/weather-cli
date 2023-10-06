@@ -1,11 +1,12 @@
 #!/usr/bin/env node
-import { getArgs } from "./helpers/args.js"
+import { getArgs } from './helpers/args.js'
+import { printHelp } from './services/log.service.js'
 
-const startCLI = () => {
+
+function startCLI() {
     const args = getArgs(process.argv)
-    console.log(args)
     if (args.h) {
-        // output help
+        printHelp()
     }
     if (args.s) {
         // setup city
