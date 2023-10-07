@@ -1,18 +1,29 @@
 #!/usr/bin/env node
 import { getArgs } from './helpers/args.js'
-import { printHelp } from './services/log.service.js'
+import { printHelp, printSuccess } from './services/log.service.js'
+import { saveKeyValue } from './services/storage.service.js'
+
+const saveToken = async (token) => {
+    try {
+        await saveKeyValue('token', token)
+        printSuccess('Token successfuly saved')
+    } catch (error) {
+        printError(error.message)
+    }
+
+}
 
 
-function startCLI() {
+async function startCLI() {
     const args = getArgs(process.argv)
     if (args.h) {
         printHelp()
     }
     if (args.s) {
-        // setup city
+        await saveKeyValue('city', args.s)
     }
     if (args.t) {
-        // save token
+        return saveToken(args.t)
     }
 }
 
