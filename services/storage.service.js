@@ -4,6 +4,11 @@ import path from 'path'
 
 const filePath = path.join(os.homedir(), 'weather-cli-data.json')
 
+export const TOKEN_DICTIONARY = {
+    token: 'token',
+    city: 'city'
+}
+
 export async function saveKeyValue(key, value) {
     const fileExists = await isExist(filePath)
     let data = {}
@@ -26,7 +31,7 @@ export async function getKeyValue(key) {
     return value
 }
 
-async function isExist(path) {
+export async function isExist(path) {
     try {
         await fs.promises.access(path)
         return true

@@ -14,7 +14,16 @@ export function printHelp() {
         `${chalk.bgCyan(' HELP ')}
         Without parameters - weather output
         -h - for help
-        -s [CITY] - setup city
+        -c [CITY] - setup city
         -t [API_KEY] - save new token`
+    )
+}
+
+export function printWeather(weather) {
+    console.log(dedent
+        `${chalk.bgYellowBright(' WEATHER ')} Погода у місті ${weather.name}: ${weather.weather[0]?.description} ${weather.main?.temp}°C
+        Відчувається як ${weather.main?.feels_like}°C
+        Швидкість вітру: ${weather.wind?.speed} м/с 
+        Вологість: ${weather.main?.humidity}%`
     )
 }
